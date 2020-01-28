@@ -22,7 +22,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.ui.main_list.itemClicked.connect(self._mainClicked)
 
         self.manager = QtNetwork.QNetworkAccessManager()
-        self.sport_req = QtNetwork.QNetworkRequest(QtCore.QUrl("http://aseman.io:3000/api/sports"))
+        self.sport_req = QtNetwork.QNetworkRequest(QtCore.QUrl("API URL"))
         self.sport_reply = self.manager.get(self.sport_req)
         self.sport_reply.finished.connect(self._sportsReply)
 
@@ -48,7 +48,7 @@ class MainWindow(QtWidgets.QMainWindow):
             vari_req = QtCore.QJsonDocument.fromVariant(dic)
             json_req = QtCore.QJsonDocument.toJson(vari_req)
 
-            req = QtNetwork.QNetworkRequest(QtCore.QUrl("http://aseman.io:3000/api/events"))
+            req = QtNetwork.QNetworkRequest(QtCore.QUrl("API URL"))
             req.setHeader(QtNetwork.QNetworkRequest.ContentTypeHeader, "application/json")
             self.event_reply = self.manager.post(req,json_req)
             self.event_reply.finished.connect(self._eventsReply)
@@ -112,7 +112,7 @@ class MainWindow(QtWidgets.QMainWindow):
         vari_req = QtCore.QJsonDocument.fromVariant(dic)
         json_req = QtCore.QJsonDocument.toJson(vari_req)
 
-        req = QtNetwork.QNetworkRequest(QtCore.QUrl("http://aseman.io:3000/api/leagues"))
+        req = QtNetwork.QNetworkRequest(QtCore.QUrl("API URL"))
         req.setHeader(QtNetwork.QNetworkRequest.ContentTypeHeader, "application/json")
         self.league_reply = self.manager.post(req,json_req)
         self.league_reply.finished.connect(self._leaguesReply)
